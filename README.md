@@ -11,5 +11,6 @@
 1. Navigate to directory of files (should contain `index.html`).
 2. Open COMMAND PROMPT for that folder.
 3. Input the following command:
-   ```python -m http.server 8000```
+   ```sh
+   python -m http.server 8000```
 4. Open a new tab and type `localhost:8000` in the address bar.
