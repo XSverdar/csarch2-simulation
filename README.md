@@ -1,5 +1,9 @@
 # CSARCH2 Simulation Project
 ## Binary Multiplication Simulator
+* Input: binary or decimal (use a minimum number of bits; max up to 16-bit)
+* Output: 
+   - Option to show either step-by-step or “all” mode of the A and Q output after every step
+   - Option to output result in text file.
 
 ### Group 7 Members
 * Ang, Audric Gan
