@@ -1,7 +1,7 @@
 # CSARCH2 Simulation Project
 ## Binary Multiplication Simulator
 
-### Group 7
+### Group 7 Members
 * Ang, Audric Gan
 * Cruz, Francesca Rodee Bautista
 * La'O, Erin Denise Cochiengco
@@ -9,7 +9,7 @@
 
 ### How To Run
 1. Navigate to directory of files (should contain `index.html`).
-2. Open COMMAND PROMPT for that folder.
+2. Open Command Prompt for that folder.
 3. Input the following command:
    ```sh
    python -m http.server 8000
