@@ -12,5 +12,6 @@
 2. Open COMMAND PROMPT for that folder.
 3. Input the following command:
    ```sh
-   python -m http.server 8000```
+   python -m http.server 8000
+   ```
 4. Open a new tab and type `localhost:8000` in the address bar.
