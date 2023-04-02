@@ -23,6 +23,11 @@ def valid_binary(input):
 def decToBin(num):
     return bin(abs(num))[2:]
 
+def binToDec(binary):
+    if not valid_binary(binary):
+        return "Invalid binary input"
+    return int(binary, 2)
+
 #This is a function that takes a binary string num and calculates its two's complement. 
 #It first initializes a boolean variable foundOne to False. 
 #Then it loops through the num string in reverse order using the reversed() and range() functions. 
@@ -59,4 +64,7 @@ if decimal_int < 0:  # input is negative
 else:  # input is positive
     binary = decToBin(decimal_int)
 
-print(binary)
+if mode == "2":  # binary to decimal
+    print(binToDec(decimal))
+else:
+    print(binary)
