@@ -1,4 +1,4 @@
-decimal = input("Decimal: ")
+decimal = input("Input: ")
 decimal_int = int(decimal)
 
 #This line calculates the absolute value of decimal_int, converts it to binary using the built-in bin() function, and removes the prefix "0b" 
