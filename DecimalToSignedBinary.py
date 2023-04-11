@@ -1,9 +1,33 @@
-decimal = input("Input: ")
-decimal_int = int(decimal)
+#current running code w/auds' function. still working on negative binToDec
 
-#This line calculates the absolute value of decimal_int, converts it to binary using the built-in bin() function, and removes the prefix "0b" 
-#by slicing from the 3rd character onward (i.e., [2:]). The resulting binary value is assigned to the binary variable as a string.
-binary= bin(abs(decimal_int))[2:] #convert absolute value of decimal to binary
+def decToBin(num):
+    return bin(abs(num))[2:]
+
+def binToDec(binary):
+    decimal = 0
+    power = len(binary) - 1
+    for digit in binary:
+        if digit == '1':
+            decimal += 2 ** power
+        power -= 1
+    return decimal
+
+def twosComp(num):
+    # convert binary string to list of integers
+    binary_list = list(map(int, num))
+    
+    foundOne = False # boolean
+    # iterate through binary digits in reverse order
+    for x in reversed(range(len(binary_list))):
+        if binary_list[x] == 1 and not foundOne:
+            foundOne = True
+        elif binary_list[x] == 1 and foundOne:
+            binary_list[x] = 0
+        elif binary_list[x] == 0 and foundOne:
+            binary_list[x] = 1
+            
+    # convert list of integers back to binary string
+    return ''.join(map(str, binary_list))
 
 def valid_binary(input):
     # check if input is valid binary number
@@ -20,51 +44,38 @@ def valid_binary(input):
         except ValueError:
             return False
 
-def decToBin(num):
-    return bin(abs(num))[2:]
-
-def binToDec(binary):
-    if not valid_binary(binary):
-        return "Invalid binary input"
-    return int(binary, 2)
-
-#This is a function that takes a binary string num and calculates its two's complement. 
-#It first initializes a boolean variable foundOne to False. 
-#Then it loops through the num string in reverse order using the reversed() and range() functions. 
-#If it encounters a '1' digit and foundOne is False, it sets foundOne to True. If it encounters a '1' 
-#digit and foundOne is True, it changes the digit to '0'. If it encounters a '0' digit and foundOne is True, it changes the digit to '1'.
-def twosComp(num):
-    #convert binary string to list of integers
-    binary_list = list(map(int, num))
-    
-    foundOne = False # boolean
-     # iterate through binary digits in reverse order
-    for x in reversed(range(len(binary_list))):
-        if binary_list[x] == 1 and not foundOne:
-            foundOne = True
-        elif binary_list[x] == 1 and foundOne:
-            binary_list[x] = 0
-        elif binary_list[x] == 0 and foundOne:
-            binary_list[x] = 1
-            
-    # convert list of integers back to binary string
-    return ''.join(map(str, binary_list))
-
 options = {
     "1": (decToBin, "Decimal to binary"),
-    #"2": (binToDec, "Binary to decimal"), not yet made
+    "2": (binToDec, "Binary to decimal"),
     "3": (twosComp, "Two's complement")
 }
 
+def inputs():
+    decimal = int(input("Decimal: "))
+    if decimal < 0:  # input is negative
+        binary = decToBin(abs(decimal))  # get positive of input
+        binary = twosComp(binary)
+    else:  # input is positive
+        binary = decToBin(decimal)
+    return binary
+
 mode = input("Mode (1: Decimal to binary, 2: Binary to decimal, 3: Two's complement): ")
 
-if decimal_int < 0:  # input is negative
-    binary = decToBin(abs(decimal_int))  # get positive of input
-    binary = twosComp(binary)
-else:  # input is positive
-    binary = decToBin(decimal_int)
-
-if mode == "2":  # binary to decimal
-    print(binToDec(decimal))
+if mode == "1":  # decimal to binary
+    print(inputs())
+elif mode == "2":  # binary to decimal
+    binary = input("Binary: ")
+    if not valid_binary(binary):
+        print("Invalid binary input")
+    else:
+        decimal = int(binary, 2)
+        print(decimal)
+elif mode == "3":  # two's complement
+    binary = input("Binary: ")
+    if not valid_binary(binary):
+        print("Invalid binary input")
+    else:
+        complement = twosComp(binary)
+        print(complement)
 else:
-    print(binary)
+    print("Invalid mode selected")
