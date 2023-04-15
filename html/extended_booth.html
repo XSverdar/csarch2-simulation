@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/pencil.css">
+    <link rel="stylesheet" href="style/extended.css">
 
     <style>
         title {
@@ -49,7 +49,6 @@
             </div>
         </div>
 
-
         <div id="booths" class="hidden mul-methods">
             <div class="inner" style="display: flex; align-items: center; justify-content: center; margin: 0; padding: 0;">
                 <a class="no-decor" href="booth.html" style="margin: 0; padding: 0;">
@@ -91,32 +90,29 @@
     <!-- INPUT AREA (LEFT SECTION) -->
     <div id="input-numbers" class="hidden">
         <!--Extended Booth section-->
-        <div id="index.html"></div>
+        <div id="extended_booth.html"></div>
         <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; margin-bottom: 30px;">
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-right: 50px; flex: 1;">
                 <br />
                 <br />
                 <br />
                 <br />
-                <h1 style="text-align: center; margin-left: 450px;">Pen and Paper Algorithm</h1>
+                <h1 style="text-align: center; margin-left: 450px;">Extended Booth's Algorithm</h1>
                 <div style="font-family:'Arial Narrow'; font-size: 14px; text-align: center; margin-left: 400px; font-weight: normal;">
-                    <h3 style="margin-top: auto; margin-bottom: auto;">Pencil-and-paper multiplication for binary numbers follows a process similar to that of decimal</h3>
-                    <h3 style="margin-top: auto; margin-bottom: auto;">multiplication, involving the multiplication of each bit of the multiplicand with each bit of the multiplier,</h3>
-                    <h3 style="margin-top: auto; margin-bottom: auto;">followed by addition of intermediate products to obtain the final answer. However, the binary system's</h3>
-                    <h3 style="margin-top: auto; margin-bottom: auto; margin-bottom: auto;">smaller radix simplifies the computation of intermediate products.</h3>
-                    <h3 style="margin-bottom: auto;">Here are the steps to perform binary pencil-and-paper multiplication:</h3>
-                    <h3 style="margin-bottom: auto;"><strong></strong>A. Represent the operands in two's complement.</strong>
-                    </h3>
-                    <h3 style="margin-top: auto; margin-bottom: auto;"><b>1.</b> For decimal numbers, use the minimum number of bits required.</h3>
-                    <h3 style="margin-top: auto;"><b>2.</b> For binary numbers, use the number of bits provided.</h3>
-                    <h3 style="margin-bottom: auto;"><b>B.</b> If necessary, sign-extend the operands to ensure they have the same number of bits.</h3>
-                    <h3 style="margin-bottom: auto;"><b>C.</b> Multiply the multiplicand with each digit of the multiplier.</h3>
-                    <h3 style="margin-top: auto; margin-bottom: auto;"><b>1.</b> Sign-extend the intermediate product to match the sum of the number</h3>
-                    <h3 style="margin-top: auto; margin-bottom: auto;"><b>of digits in the multiplicand and multiplier.</b></h3>
-                    <h3 style="margin-top: auto; margin-bottom: auto;"><b>2.</b> Like decimal pencil-and-paper multiplication, skip one bit</h3>
-                    <h3 style="margin-top: auto; margin-bottom: auto;">after each intermediate product.</h3>
-                    <h3 style="margin-top: auto; margin-bottom: auto;">3.If the multiplier is negative, add the two's complement of the multiplicand as</h3>
-                    <h3 style="margin-top: auto; margin-bottom: auto;">the last intermediate product.</h3>
+                    <h3 style="margin-top: auto; margin-bottom: auto;">The extended Booth's algorithm can reduce the number of intermediate summands</h3>
+                    <h3 style="margin-top: auto; margin-bottom: auto;">by half when multiplying two signed binary numbers in two's complement notation.</h3>
+                    <h3 style="margin-bottom: auto;">Here are the steps to perform extended booth’s algorithm:</h3>
+                    <h3 style="margin-bottom: auto;">A. Convert the operands to two's complement:</h3>
+                    <h3 style="margin-top: auto; margin-bottom: auto;">1. Use the minimum number of bits required to represent a decimal input.</h3>
+                    <h3 style="margin-top: auto; margin-bottom: auto;">2. Use the number of bits specified for a binary input.</h3>
+                    <h3 style="margin-bottom: auto;">B. Sign-extend the operands if necessary to ensure they have the same number of bits.</h3>
+                    <h3 style="margin-bottom: auto;">C. Convert the multiplier to its extended Booth's equivalent:</h3>
+                    <h3 style="margin-top: auto; margin-bottom: auto;">1. Append a 0 to the least significant bit.</h3>
+                    <h3 style="margin-top: auto; margin-bottom: auto;">2. If the number of bits in the multiplier is odd, perform sign extension.</h3>
+                    <h3 style="margin-top: auto; margin-bottom: auto;">3. Use bit-pair recoding starting from the least significant bit.</h3>
+                    <h3 style="margin-bottom: auto;">D. Multiply using the pencil-and-paper method, ignoring the additional step even if</h3>
+                    <h3 style="margin-top: auto; margin-bottom: auto;">the multiplier is negative. Since each bit-pair is equivalent to two bits,</h3>
+                    <h3 style="margin-top: auto; margin-bottom: auto;">skip two bits for each intermediate product</h3>
                 </div>
 
 
@@ -167,7 +163,6 @@
                 <input type="text" id="multiplier-bin" autocomplete="off" oninput="isValidBin(this, 'multiplier', value)" style="font-size: 20px; padding: 10px; width: 400px;" />
             </p>
         </div>
-
 
         <div class="error" id="multiplier-error">
             <p></p>
