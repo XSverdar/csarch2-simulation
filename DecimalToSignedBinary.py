@@ -19,6 +19,13 @@ def valid_binary(input):
             return True
         except ValueError:
             return False
+        
+ def valid_decimal(input):
+    try:
+        float(input)
+        return True
+    except ValueError:
+        return False
 
 def decToBin(num):
     return bin(abs(num))[2:]
