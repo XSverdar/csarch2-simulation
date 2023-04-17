@@ -1,8 +1,8 @@
 # CSARCH2 Simulation Project
 ## Binary Multiplication Simulator
-* Input: binary or decimal (use a minimum number of bits; max up to 16-bit)
-* Output: 
-   - Option to show either step-by-step or “all” mode of the A and Q output after every step
+* Input: binary or decimal (max up to 16-bit)
+* Output: (1) Pencil-And-Paper (2) Booth's (3) Extended Booth's Algorithm 
+   - Option to show step-by-step or "all" mode of the intermediate result
    - Option to output result in text file.
 
 ### Group 7 Members
