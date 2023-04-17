@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Binary Multiplication Calculator</title>
+  <link rel="stylesheet" href="style-c.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+  <script>
+    function binaryMultiplication(a, b, mode) {
+      let product = 0;
+      let shift = 0;
+      let steps = [];
+      while (b > 0) {
+        if (b & 1) {
+          const term = a << shift;
+          product += term;
+          if (mode === "step") {
+            steps.push(term);
+          }
+        }
+        b = b >> 1;
+        shift++;
+      }
+      if (mode === "all") {
+        steps = [product];
+      }
+      return {product, steps};
+    }
+    
+    function calculate() {
+      const a = document.getElementById("a").value;
+      const b = document.getElementById("b").value;
+      if (a.length > 16 || b.length > 16) {
+        alert("Input values must be 16-bit or less");
+        return;
+      }
+      const mode = document.querySelector('input[name="mode"]:checked').value;
+      const aInt = parseInt(a, 2);
+      const bInt = parseInt(b, 2);
+      const result = binaryMultiplication(aInt, bInt, mode);
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "";
+      if (mode === "step") {
+        for (let i = 0; i < result.steps.length; i++) {
+          const stepDiv = document.createElement("div");
+          stepDiv.innerHTML = `<p class="txt-left">Intermediate ${i + 1}:</p> <br> ${result.steps[i].toString(2)}`;
+          resultDiv.appendChild(stepDiv);
+        }
+      }
+      const productDiv = document.createElement("p");
+      productDiv.innerHTML = `Result: ${result.product.toString(2)}`;
+      resultDiv.appendChild(productDiv);
+    }
+    function download() {
+      const resultDiv = document.getElementById("result");
+      const text = resultDiv.innerText;
+      const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+      saveAs(blob, "binary_multiplication.txt");
+    }
+  </script>
+</head>
+<body>
+    <!-- title-bar -->
+    <div class="title-bar">
+      <img class="title-logo" src="logos/logo.png" />
+      <h1 class="bmc-title">Binary Multiplication Calculator</h1>
+        <div class="tabs-container">
+          <a href="pnp.html" class="tab-link"><img class="tab-logos"src="logos/pencil.png" alt="pnp-logo"> pencil and paper</a>
+          <a href="booth-c.html" class="tab-link"><img class="tab-logos"src="logos/booth.png" alt="booth-logo">booth's algorithm</a>
+          <a href="ext-b.html" class="tab-link"><img class="tab-logos"src="logos/ext-booth.png" alt="ext-booth-logo">extended booth's algorithm</a>
+          <a href="about-c.html" class="tab-link"><img class="tab-logos"src="logos/about-logo.png" alt="abt-logo">about</a>
+      </div>
+    </div>
+  <div class="main-container"> <!-- container for the entire body -->
+
+    <div class="left-container"> <!-- container for the calculator -->
+        <div class="inner-container">
+          <!-- input -->
+          <div class="left-input-container">
+            <label class="label-text" for="a">BINARY 1:</label><br>
+              <input type="text" id="a" maxlength="16"><br><br>
+            <label class="label-text" for="b">BINARY 2:</label><br>
+              <input type="text" id="b" maxlength="16"><br><br>
+          </div>
+
+          <!-- selection for the output -->
+          <div class="left-selection-container">
+          <input type="radio" name="mode" value="all" checked> All intermediate steps<br>
+          <input type="radio" name="mode" value="step"> Step-by-step intermediate steps<br><br>
+          </div>
+          
+          <!-- button -->
+          <div class="left-button-container">
+          <button class="multiply-btn" onclick="calculate()">MULTIPLY</button><br><br>
+          </div>
+
+          <!-- results -->
+          <div class="result-container">
+            <div id="result" class="result"></div>
+            
+          </div>
+          <button onclick="download()" style="margin-bottom:30px;">Download</button>
+        </div>
+    </div>
+
+    <div class="right-container"> <!--for the description-->
+      <div class="desc-container">
+        <h2 class="desc-title">Booth's Algorithm</h2>
+        <div class="desc-content">
+          The Booth algorithm is a method of multiplying two signed binary numbers in two's complement
+            notation that uses an encoding scheme to simplify the operation and increase efficiency.
+            To use this algorithm, the following steps should be followed: 
+            <ul>
+              <li>A. represent both multiplicand (m) and multiplier (n) using 2's </li><br>
+             <li>B. the first intermediate product has a length of m+n bits. Sign extend 
+                as needed</li><br>
+              <li>C. Convert the multiplier to its Booth's equivalent by:<br>
+                1. Adding a 0 to the least significant bit. <br>
+                2. Starting from the least significant bit, pair and encode two bits.</li><br>
+             <li>D. The pencil-and-paper method is used to multiply the operands, with one bit
+              skipped for each intermediate product. This step is performed regardless of the multiplier's sign.</li>
+            </ul>
+            </div>
+      
+     </div>
+    </div>
+  </div>
+  <footer>
+    
+    <a href="https://github.com/XSverdar/csarch2-simulation/tree/main" class="b-repo">browse repository</a>
+    
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Binary Multiplication Calculator</title>
+  <link rel="stylesheet" href="style-c.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <script>
+    function signedBinaryCalculator(a, b) {
+        // Convert a and b to 2's complement format
+        a = (a < 0) ? (0b11111111 + a + 1) & 0xFF : a;
+        b = (b < 0) ? (0b11111111 + b + 1) & 0xFF : b;
+
+        // Determine the sign bit of the result
+        var signBit = ((a >> 7) ^ (b >> 7)) ? 1 : 0;
+
+        // Initialize the first intermediate product
+        var product = a * b;
+
+        // Shift the intermediate products right and add the 2's complement of a
+        for (var i = 1; i < 8; i++) {
+            var shiftAmount = i + 7;
+            if (b >> i & 1) {
+                product += ((a << shiftAmount) & 0xFF) * ((b >> i) & 1);
+            }
+        }
+
+        // Sign extend the result as needed
+        if (signBit && (product & 0x80)) {
+            product |= 0xFFFFFF00;
+        }
+
+        // Convert the result to a binary string
+        var resultBinary = (product >>> 0).toString(2);
+
+        // Pad the binary string with leading zeros if necessary
+        while (resultBinary.length < 8) {
+            resultBinary = '0' + resultBinary;
+        }
+
+        // Convert the result to a decimal number
+        var resultDecimal = product;
+
+        return [resultBinary, resultDecimal];
+    }
+
+    function calculate() {
+        var a = parseInt(document.getElementById("a").value);
+        var b = parseInt(document.getElementById("b").value);
+
+        var result = signedBinaryCalculator(a, b);
+
+        document.getElementById("resultBinary").innerHTML = result[0];
+        document.getElementById("resultDecimal").innerHTML = result[1];
+    }
+</script>
+</head>
+<body>
+    <!-- title-bar -->
+    <div class="title-bar">
+      <img class="title-logo" src="logos/logo.png" />
+      <h1 class="bmc-title">Binary Multiplication Calculator</h1>
+        <div class="tabs-container">
+          <a href="pnp.html" class="tab-link"><img class="tab-logos"src="logos/pencil.png" alt="pnp-logo"> pencil and paper</a>
+          <a href="booth-c.html" class="tab-link"><img class="tab-logos"src="logos/booth.png" alt="booth-logo">booth's algorithm</a>
+          <a href="ext-b.html" class="tab-link"><img class="tab-logos"src="logos/ext-booth.png" alt="ext-booth-logo">extended booth's algorithm</a>
+          <a href="about-c.html" class="tab-link"><img class="tab-logos"src="logos/about-logo.png" alt="abt-logo">about</a>
+      </div>
+    </div>
+  <div class="main-container"> <!-- container for the entire body -->
+
+    <div class="left-container"> <!-- container for the calculator -->
+        <div class="inner-container">
+          <!-- input -->
+          <div class="left-input-container">
+            <label class="label-text" for="a">Multiplicand (a):</label><br>
+            <input type="number" id="a" name="a" value="-5">
+            <br>
+            <label class="label-text" for="b">Multiplier (b):</label><br>
+            <input type="number" id="b" name="b" value="3">
+          </div>
+          
+          <!-- button -->
+          <div class="left-button-container">
+          <button class="multiply-btn" onclick="calculate()">MULTIPLY</button><br><br>
+          </div>
+
+          <!-- results -->
+            <p class="results-dec">Binary: <br> <span id="resultBinary" class="desc-content"></span></p> 
+            <p class="results-dec">Decimal: <br> <span id="resultDecimal" class="desc-content"></span></p>
+
+        </div>
+    </div>
+
+    <div class="right-container"> <!--for the description-->
+      <div class="desc-container">
+        <h2 class="desc-title">PENCIL AND PAPER</h2>
+        <div class="desc-content">
+            The pencil-and-paper method for integer binary multiplication is a technique used to multiply two binary numbers, typically one bit at a time, and keep track of the intermediate products and final result.
+            The steps are:
+            <ul>
+                <li>A. The operands must be represented in two's complement form:<br>
+                  1. If the input is in decimal form, use the smallest possible number of bits to represent it.<br>
+                  2. If the input is a binary number, use the number of bits specified in the input.</li><br>
+               <li>B. The number of bits in each operand must be equal, so sign extension is necessary if required.</li><br>
+                <li>C.  As with pencil-and-paper multiplication, succeeding intermediate 
+                  products are shifted right.</li><br>
+               <li>D. if the multiplier is negative, add the 2's complement of the 
+                multiplicand, sign-extended and shifted to sign-bit position</li>
+              </ul>
+            </div>
+      
+     </div>
+    </div>
+  </div>
+  <footer>
+    <a href="https://github.com/XSverdar/csarch2-simulation/tree/main" class="b-repo">browse repository</a>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,212 @@
+html{
+    height: 100%;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Bebas Neue', sans-serif;
+    background-color: #DBEBED;
+    margin:0;
+    padding:0;
+    height: 100%;
+}
+h1{
+    margin:0;
+}
+
+/* ABOUT PAGE */
+.abt-main-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.abt-inner-container{
+    display: flex;
+    width: 50%;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.abt-inner-container h1{
+    font-size: 50px;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.main-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.title-bar{
+    color: white;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    background-color: #10564F ;
+}
+
+.bmc-title{
+    padding-top:3px;
+    padding-left: 10px;
+}
+.title-logo{
+    width: 50px;
+    height: 50px;
+}
+
+.tabs-container{
+    display: flex;
+    width: 60%;
+    
+}
+
+.tab-link{
+    display: flex;
+    margin-top: 10px;
+    padding-left: 30px;
+    font-size: 20px;
+    text-decoration: none; 
+    color: white; 
+}
+
+.tab-link:hover {
+    color: #9FD3B1; /* Set font color to dark green on hover */
+  }
+
+.tab-logos{
+    height:35px;
+    margin-top:-3px;
+}
+
+/*LEFT SIDE*/
+
+.left-container{
+    width: 50%;
+}
+
+.inner-container{
+    margin-top: 40px;
+    padding-left: 20px;
+}
+
+.left-selection-container{
+    width: 50%;
+}
+.left-button-container{
+    margin-top: 20px;
+    width: 50%;
+}
+
+.label-text{
+    font-size: 25px;
+}
+
+input[type="text"] {
+    width: 90%;
+    height: 30px;
+  }
+
+.results-dec{
+    font-size: 20px;
+}
+
+.multiply-btn:hover {
+    animation-name: bounce;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    background-color:#1E7068;
+}
+  
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(-5px); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(-2px); }
+    100% { transform: translateY(0); }
+}
+
+.multiply-btn{
+    width: 100%;
+    height: 50px;
+    font-size: 30px;
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    background-color:#10564F;
+}
+
+.result-container{
+    display: flex;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.result{
+    margin: 0;
+    text-align: right;
+}
+.txt-left{
+    margin: 0;
+    text-align: left;
+}
+
+
+/* RIGHT SIDE */
+.right-container{
+    width: 50%;
+}
+
+.desc-title{
+    text-align: center;
+    padding-right: 50px;
+    font-size: 40px;
+}
+
+.desc-content{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    align-self: center;
+    width: 90%;
+    margin:0;
+    font-size: 15px;
+}
+
+ul{
+    padding: 0;
+    text-align: center;
+    list-style-type: none;
+}
+
+footer{
+    background-color: #10564F;
+    margin-top: auto;
+    padding: 30px;
+    height: 30px;
+}
+
+.b-repo{
+    font-size: 20px;
+    margin-bottom: 100px;
+    text-decoration: none; 
+    color: white; 
+}
+
+.b-repo:hover {
+    color: #9FD3B1; /* Set font color to dark green on hover */
+  }
+
+@media only screen and (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+    .left-container, .right-container {
+      width: 100%;
+    }
+  }
+  
+  
+  
+  
